@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MindBloom Journal</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <header class="header">
+    <nav class="navbar">
+      <div class="container">
+        <h1>🌿 MindBloom</h1>
+        <ul class="nav-list">
+          <li><a href="home.html">Home</a></li>
+          <li><a href="journal.html" class="active">Journal</a></li>
+          <li><a href="chart.html">Weekly Chart</a></li>
+          <li><a href="login.html">Login</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container journal-container">
+      <h2>Your Weekly Reflection</h2>
+      <form class="journal-form" id="journalForm">
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" required />
+
+        <label for="mood">Mood:</label>
+        <select id="mood" name="mood" required>
+          <option value="">--Select Mood--</option>
+          <option value="happy">😊 Happy</option>
+          <option value="okay">😐 Okay</option>
+          <option value="sad">😢 Sad</option>
+          <option value="anxious">😟 Anxious</option>
+          <option value="angry">😠 Angry</option>
+        </select>
+
+        <label for="stress">Stress Level (0 to 10):</label>
+        <input type="range" id="stress" name="stress" min="0" max="10" step="1" />
+
+        <label for="positive">✨ What went well this week?</label>
+        <textarea id="positive" name="positive" rows="3"></textarea>
+
+        <label for="challenges">⚠️ What was challenging?</label>
+        <textarea id="challenges" name="challenges" rows="3"></textarea>
+
+        <label for="gratitude">🙏 Gratitude - What are you thankful for?</label>
+        <textarea id="gratitude" name="gratitude" rows="2"></textarea>
+
+        <label for="reflection">📝 Final Thoughts or Reflections:</label>
+        <textarea id="reflection" name="reflection" rows="4"></textarea>
+
+        <button type="submit" class="btn">Submit Journal</button>
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-container">
+      <p>&copy; 2023 MindBloom. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    const form = document.getElementById('journalForm');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const entry = {
+        date: form.date.value,
+        mood: form.mood.value,
+        stress: form.stress.value,
+        positive: form.positive.value,
+        challenges: form.challenges.value,
+        gratitude: form.gratitude.value,
+        reflection: form.reflection.value
+      };
+
+      let journalData = JSON.parse(localStorage.getItem('journalData')) || [];
+      journalData.push(entry);
+      localStorage.setItem('journalData', JSON.stringify(journalData));
+      alert('Journal entry saved!');
+      form.reset();
+    });
+  </script>
+</body>
+</html>
