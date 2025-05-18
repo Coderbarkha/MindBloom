@@ -6,41 +6,180 @@
   <title>MindBloom Journal</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    .journal-container {
+      padding: 2rem 1rem;
+      background: linear-gradient(135deg, #f0fdf4, #e0f7ec);
+      border-radius: 15px;
+      margin-top: 2rem;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      animation: fadeSlideIn 1s ease forwards;
+    }
+
+    .journal-form label {
+      display: block;
+      margin: 1rem 0 0.3rem;
+      font-weight: 600;
+      color: #14532d;
+    }
+
+    .journal-form input,
+    .journal-form select,
+    .journal-form textarea {
+      width: 100%;
+      padding: 0.6rem;
+      border: 1px solid #b5e0cd;
+      border-radius: 10px;
+      font-family: 'Quicksand';
+      transition: 0.3s;
+      background-color: #ffffff;
+    }
+
+    .journal-form input:focus,
+    .journal-form select:focus,
+    .journal-form textarea:focus {
+      border-color: #2ecc71;
+      outline: none;
+      box-shadow: 0 0 5px rgba(46, 204, 113, 0.5);
+    }
+
+    .journal-form .btn {
+      margin-top: 1.5rem;
+      animation: bounceIn 1s ease forwards;
+    }
+
+    @keyframes fadeSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes bounceIn {
+      0% {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+    body.dark-mode {
+  background: #121212 !important;
+  color: #f0f0f0;
+}
+
+body.dark-mode .register-container {
+  background: rgba(30, 30, 30, 0.95);
+  box-shadow: 0 12px 40px rgba(255, 255, 255, 0.2);
+}
+
+body.dark-mode h2,
+body.dark-mode label,
+body.dark-mode .login-link,
+body.dark-mode .login-link a,
+body.dark-mode footer,
+body.dark-mode footer a {
+  color: #f0f0f0;
+}
+
+body.dark-mode input[type="text"],
+body.dark-mode input[type="email"],
+body.dark-mode input[type="password"] {
+  background-color: #1f1f1f;
+  color: #f0f0f0;
+  border-color: #444;
+  box-shadow: inset 0 0 6px #333;
+}
+
+body.dark-mode input[type="text"]:focus,
+body.dark-mode input[type="email"]:focus,
+body.dark-mode input[type="password"]:focus {
+  border-color: #4fbfa8;
+  box-shadow: 0 0 8px #4fbfa8;
+}
+
+body.dark-mode button[type="submit"] {
+  background: #4fbfa8;
+  color: #000;
+}
+
+body.dark-mode button[type="submit"]:hover {
+  background: #3ca690;
+}
+
+body.dark-mode #successMessage {
+  background-color: #2e7d32;
+  color: #e0ffe0;
+}
+
+body.dark-mode .navbar,
+body.dark-mode .footer-container {
+  background-color: #1c1c1c;
+  color: #eee;
+}
+
+body.dark-mode .navbar a {
+  color: #f0f0f0;
+}
+.theme-toggle{
+  background-color:rgba(255, 255, 255, 0.95);
+  border: none;
+}
+button.theme-toggle{
+  background-color: rgba(255, 255, 255, 0.95);
+}
+  
+
+  </style>
 </head>
 <body>
 
   <header class="header">
     <nav class="navbar">
-      <div class="container">
+      <div class="container nav-container">
         <h1>🌿 MindBloom</h1>
         <ul class="nav-list">
-          <li><a href="home.html">Home</a></li>
-          <li><a href="journal.html" class="active">Journal</a></li>
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
           <li><a href="chart.html">Weekly Chart</a></li>
           <li><a href="login.html">Login</a></li>
         </ul>
+         <button id="themeToggle" class="theme-toggle" aria-label="Toggle Dark Mode"><img id="themeIcon" src="images/moon.png" height="25px" width="25px"></button>
       </div>
     </nav>
   </header>
 
   <main>
     <div class="container journal-container">
-      <h2>Your Weekly Reflection</h2>
+      <h2 style="text-align:center; color:#1a4d3f;">🪴 Your Weekly Reflection</h2>
       <form class="journal-form" id="journalForm">
-        <label for="date">Date:</label>
+        <label for="date">📅 Date:</label>
         <input type="date" id="date" name="date" required />
 
-        <label for="mood">Mood:</label>
+        <label for="mood">😌 Mood:</label>
         <select id="mood" name="mood" required>
           <option value="">--Select Mood--</option>
-          <option value="happy">😊 Happy</option>
-          <option value="okay">😐 Okay</option>
-          <option value="sad">😢 Sad</option>
-          <option value="anxious">😟 Anxious</option>
-          <option value="angry">😠 Angry</option>
+          <option value="neutral">😐 Neutral(0)</option>
+          <option value="happy">😊 Happy(1)</option>
+          <option value="okay">😐 Okay(2)</option>
+          <option value="sad">😢 Sad(3)</option>
+          <option value="anxious">😟 Anxious(4)</option>
+          <option value="angry">😠 Angry(5)</option>
+          <option value="excited">😃 Excited(6)</option>
+          <option value="bored">😒 Bored(7)</option>
+          <option value="stressed">😩 Stressed(8)</option>
+          <option value="relaxed">😌 Relaxed(9)</option>
+          <option value="grateful">🙏 Grateful(10)</option>
+          
         </select>
 
-        <label for="stress">Stress Level (0 to 10):</label>
+        <label for="stress">📈 Stress Level (0 to 10):</label>
         <input type="range" id="stress" name="stress" min="0" max="10" step="1" />
 
         <label for="positive">✨ What went well this week?</label>
@@ -55,14 +194,14 @@
         <label for="reflection">📝 Final Thoughts or Reflections:</label>
         <textarea id="reflection" name="reflection" rows="4"></textarea>
 
-        <button type="submit" class="btn">Submit Journal</button>
+        <button type="submit" class="btn">📤 Submit Journal</button>
       </form>
     </div>
   </main>
 
   <footer>
     <div class="footer-container">
-      <p>&copy; 2023 MindBloom. All rights reserved.</p>
+      <p>&copy; 2025 MindBloom. All rights reserved.</p>
     </div>
   </footer>
 
@@ -83,9 +222,31 @@
       let journalData = JSON.parse(localStorage.getItem('journalData')) || [];
       journalData.push(entry);
       localStorage.setItem('journalData', JSON.stringify(journalData));
-      alert('Journal entry saved!');
+      alert('✅ Journal entry saved!');
       form.reset();
     });
+
+
+      const toggleButton = document.getElementById("themeToggle");
+  const body = document.body;
+  const themeIcon = document.getElementById("themeIcon");
+
+  // Apply saved theme on page load
+  if (localStorage.getItem("theme") === "dark") {
+    body.classList.add("dark-mode");
+    themeIcon.src = "images/sun.png"; // Show sun icon in dark mode
+  }
+
+  toggleButton.addEventListener("click", () => {
+    body.classList.toggle("dark-mode");
+    const isDark = body.classList.contains("dark-mode");
+
+    // Change icon based on mode
+    themeIcon.src = isDark ? "images/sun.png" : "images/moon.png";
+
+    // Save preference
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+  });
   </script>
 </body>
 </html>
