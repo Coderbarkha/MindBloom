@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Register | Mindbloom</title>
+<link rel="stylesheet" href="style.css" />
+  <style>
+   
+
+
+
+    /* Container */
+    .register-container {
+  position: relative;
+  background: rgba(255, 255, 255, 0.15); /* frosted glass background */
+  border-radius: 15px;
+  width: 380px;
+  padding: 2.5rem 2rem 3rem;
+  backdrop-filter: blur(15px); /* main glassmorphism effect */
+  -webkit-backdrop-filter: blur(15px); /* for Safari support */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  z-index: 1;
+  animation: slideIn 0.8s ease forwards;
+}
+
+    @keyframes slideIn {
+      0% {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    h2 {
+      margin: 0 0 1.5rem;
+      font-weight: 700;
+      color: #102a43;
+      text-align: center;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+
+    /* Form Elements */
+    label {
+      display: block;
+      margin-bottom: 0.4rem;
+      font-weight: 600;
+      color: #334e68;
+      letter-spacing: 0.04em;
+      font-size: 0.9rem;
+    }
+    .form-wrapper {
+  height: calc(100vh - 100px); /* adjust based on navbar height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 0.55rem 0.75rem;
+      margin-bottom: 1rem;
+      border: 2px solid #a9bac7;
+      border-radius: 8px;
+      font-size: 1rem;
+      color: #102a43;
+      transition: border-color 0.4s ease, box-shadow 0.4s ease;
+      box-shadow: inset 0 0 6px #e3e7ed;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="password"]:focus {
+      border-color: #4fbfa8;
+      box-shadow: 0 0 8px #4fbfa8;
+      outline: none;
+    }
+
+    /* Error messages */
+    .error {
+      color: #f44336;
+      font-size: 0.85rem;
+      margin-top: -0.8rem;
+      margin-bottom: 0.7rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      height: 0;
+    }
+    .error.visible {
+      opacity: 1;
+      height: auto;
+    }
+
+    /* Submit Button */
+    button[type="submit"] {
+      width: 100%;
+      background: #4fbfa8;
+      color: white;
+      padding: 0.75rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 8px 15px rgba(79, 191, 168, 0.4);
+      transition: background 0.3s ease, transform 0.2s ease;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    button[type="submit"]:hover {
+      background: #3ca690;
+      transform: translateY(-3px);
+      box-shadow: 0 15px 25px rgba(60, 166, 144, 0.5);
+    }
+    button[type="submit"]:active {
+      transform: translateY(1px);
+      box-shadow: 0 5px 10px rgba(60, 166, 144, 0.3);
+    }
+
+    /* Success message */
+    #successMessage {
+      margin-top: 1rem;
+      padding: 1rem;
+      border-radius: 12px;
+      background-color: #d4edda;
+      color: #155724;
+      font-weight: 700;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    #successMessage.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Link to login */
+    .login-link {
+      margin-top: 1.4rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #334e68;
+    }
+    .login-link a {
+      text-decoration: none;
+      color: #4fbfa8;
+      font-weight: 700;
+      transition: color 0.3s ease;
+    }
+    .login-link a:hover {
+      color: #3ca690;
+    }
+    /* Footer */
+footer {
+  background-color: #d1e7dd;
+  padding: 1rem 0;
+  text-align: center;
+  color: #2d3a2d;
+  font-weight: 500;
+}
+footer a {
+  color: #2d3a2d;
+  text-decoration: none;
+}
+/* 🌙 DARK MODE STYLES */
+body.dark-mode {
+  background: #121212 !important;
+  color: #f0f0f0;
+}
+
+body.dark-mode .register-container {
+  background: rgba(30, 30, 30, 0.3);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 12px 40px rgba(255, 255, 255, 0.1);
+}
+
+
+body.dark-mode h2,
+body.dark-mode label,
+body.dark-mode .login-link,
+body.dark-mode .login-link a,
+body.dark-mode footer,
+body.dark-mode footer a {
+  color: #f0f0f0;
+}
+
+body.dark-mode input[type="text"],
+body.dark-mode input[type="email"],
+body.dark-mode input[type="password"] {
+  background-color: #1f1f1f;
+  color: #f0f0f0;
+  border-color: #444;
+  box-shadow: inset 0 0 6px #333;
+}
+
+body.dark-mode input[type="text"]:focus,
+body.dark-mode input[type="email"]:focus,
+body.dark-mode input[type="password"]:focus {
+  border-color: #4fbfa8;
+  box-shadow: 0 0 8px #4fbfa8;
+}
+
+body.dark-mode button[type="submit"] {
+  background: #4fbfa8;
+  color: #000;
+}
+
+body.dark-mode button[type="submit"]:hover {
+  background: #3ca690;
+}
+
+body.dark-mode #successMessage {
+  background-color: #2e7d32;
+  color: #e0ffe0;
+}
+
+body.dark-mode .navbar,
+body.dark-mode .footer-container {
+  background-color: #1c1c1c;
+  color: #eee;
+}
+
+body.dark-mode .navbar a {
+  color: #f0f0f0;
+}
+.theme-toggle{
+  background-color:rgba(255, 255, 255, 0.95);
+  border: none;
+}
+button.theme-toggle{
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+  </style>
+</head>
+<body style="background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1470&q=80') no-repeat center center fixed;
+      background-size: cover;">
+     <!-- Header/Navbar -->
+  <header class="header">
+    <nav class="navbar">
+      <div class="container nav-container">
+        <h1>🌿 MindBloom</h1>
+        <ul class="nav-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="chart.html">Weekly Chart</a></li>
+          <li><a href="login.html" class="active">Login</a></li>
+        </ul>
+       <button id="themeToggle" class="theme-toggle" aria-label="Toggle Dark Mode"><img id="themeIcon" src="images/moon.png" height="25px" width="25px"></button>
+
+      </div>
+    </nav>
+  </header>
+    <br><br><br><br>
+<div class="form-wrapper">
+  <div class="register-container" role="main" aria-label="Register form">
+    <h2>Create Your Account</h2>
+    <form id="registerForm" novalidate>
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name" placeholder="Enter your full name" required aria-describedby="nameError" />
+      <div id="nameError" class="error" aria-live="assertive"></div>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="you@example.com" required aria-describedby="emailError" />
+      <div id="emailError" class="error" aria-live="assertive"></div>
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" placeholder="Enter password" required aria-describedby="passwordError" />
+      <div id="passwordError" class="error" aria-live="assertive"></div>
+
+      <label for="confirmPassword">Confirm Password</label>
+      <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required aria-describedby="confirmPasswordError" />
+      <div id="confirmPasswordError" class="error" aria-live="assertive"></div>
+
+      <button type="submit">Register</button>
+    </form>
+
+    <div id="successMessage" role="alert" aria-live="polite"></div>
+
+    <div class="login-link">
+      Already have an account? <a href="login.html">Login here</a>
+    </div>
+  </div>
+  </div>
+  <br><br><br><br><br><br><br><br><br><br><br><br>
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container fade-in">
+      <p>&copy; 2025 Mindbloom. All rights reserved.</p>
+    </div>
+  </footer>
+  <script>
+    const form = document.getElementById('registerForm');
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    const confirmPasswordInput = document.getElementById('confirmPassword');
+
+    const nameError = document.getElementById('nameError');
+    const emailError = document.getElementById('emailError');
+    const passwordError = document.getElementById('passwordError');
+    const confirmPasswordError = document.getElementById('confirmPasswordError');
+    const successMessage = document.getElementById('successMessage');
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+
+      // Reset errors and success message
+      [nameError, emailError, passwordError, confirmPasswordError].forEach(el => {
+        el.textContent = '';
+        el.classList.remove('visible');
+      });
+      successMessage.textContent = '';
+      successMessage.classList.remove('show');
+
+      let hasError = false;
+      const name = nameInput.value.trim();
+      const email = emailInput.value.trim();
+      const password = passwordInput.value.trim();
+      const confirmPassword = confirmPasswordInput.value.trim();
+
+      // Name validation
+      if (!name) {
+        nameError.textContent = 'Full name is required';
+        nameError.classList.add('visible');
+        hasError = true;
+      } else if (name.length < 3) {
+        nameError.textContent = 'Name must be at least 3 characters';
+        nameError.classList.add('visible');
+        hasError = true;
+      }
+
+      // Email validation (simple regex)
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!email) {
+        emailError.textContent = 'Email is required';
+        emailError.classList.add('visible');
+        hasError = true;
+      } else if (!emailRegex.test(email)) {
+        emailError.textContent = 'Please enter a valid email';
+        emailError.classList.add('visible');
+        hasError = true;
+      }
+
+      // Password validation
+      if (!password) {
+        passwordError.textContent = 'Password is required';
+        passwordError.classList.add('visible');
+        hasError = true;
+      } else if (password.length < 6) {
+        passwordError.textContent = 'Password must be at least 6 characters';
+        passwordError.classList.add('visible');
+        hasError = true;
+      }
+
+      // Confirm password validation
+      if (!confirmPassword) {
+        confirmPasswordError.textContent = 'Please confirm your password';
+        confirmPasswordError.classList.add('visible');
+        hasError = true;
+      } else if (password !== confirmPassword) {
+        confirmPasswordError.textContent = 'Passwords do not match';
+        confirmPasswordError.classList.add('visible');
+        hasError = true;
+      }
+
+      if (!hasError) {
+        successMessage.textContent = 'Registration successful! 🎉';
+        successMessage.classList.add('show');
+        form.reset();
+      }
+    });
+
+    // Dark mode toggle
+  const toggleButton = document.getElementById("themeToggle");
+  const body = document.body;
+  const themeIcon = document.getElementById("themeIcon");
+
+  // Apply saved theme on page load
+  if (localStorage.getItem("theme") === "dark") {
+    body.classList.add("dark-mode");
+    themeIcon.src = "images/sun.png"; // Show sun icon in dark mode
+  }
+
+  toggleButton.addEventListener("click", () => {
+    body.classList.toggle("dark-mode");
+    const isDark = body.classList.contains("dark-mode");
+
+    // Change icon based on mode
+    themeIcon.src = isDark ? "images/sun.png" : "images/moon.png";
+
+    // Save preference
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+  });
+
+
+  </script>
+</body>
+</html>
